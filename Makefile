@@ -14,7 +14,7 @@ FILES =	ft_printf.c\
 		ft_unsigned_int.c\
 		ft_unsigned_hex.c\
 
-%.o : %.c libft.h
+%.o : %.c
 		@$(CC) $(FLAGS) -c $<
 		@echo "Compiling $<"
 
