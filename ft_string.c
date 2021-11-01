@@ -11,14 +11,13 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_string(int written, va_list args)
+int	ft_string(va_list args)
 {
 	char	*str;
 
 	str = va_arg(args, char *);
 	if (!str)
-		written += write(1, "(null)", 6);
+		return (write(1, "(null)", 6));
 	else
-		written += write(1, str, ft_strlen(str));
-	return (written);
+		return (write(1, str, ft_strlen(str)));
 }

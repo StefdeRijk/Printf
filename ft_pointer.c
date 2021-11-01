@@ -3,15 +3,13 @@ static int	ft_numlen(unsigned long nbr);
 
 static char	*ft_numcpy(unsigned long nbr, int len, char *str);
 
-int	ft_pointer(int written, va_list args)
+int	ft_pointer(va_list args)
 {
 	char			*str;
 	int				len;
 	unsigned long	nbr;
-	unsigned long	longs;
 
-	longs = va_arg(args, unsigned long);
-	nbr = longs;
+	nbr = va_arg(args, unsigned long);
 	len = ft_numlen(nbr);
 	str = malloc(len + 1);
 	if (str == 0)
@@ -20,10 +18,10 @@ int	ft_pointer(int written, va_list args)
 		str[0] = '0';
 	str[len] = '\0';
 	ft_numcpy(nbr, len, str);
-	written += write(1, "0x", 2);
-	written += write(1, str, len);
+	nbr = write(1, "0x", 2);
+	nbr += write(1, str, len);
 	free(str);
-	return (written);
+	return (nbr);
 }
 
 static int	ft_numlen(unsigned long nbr)

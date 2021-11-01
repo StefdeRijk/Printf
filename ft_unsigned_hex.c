@@ -3,15 +3,13 @@ static int	ft_numlen(unsigned long nbr);
 
 static char	*ft_numcpy(unsigned long nbr, int len, char *str, char c);
 
-int	ft_unsigned_hex(int written, char c, va_list args)
+int	ft_unsigned_hex(char c, va_list args)
 {
 	char			*str;
 	int				len;
 	unsigned long	nbr;
-	unsigned int	uns_int;
 
-	uns_int = va_arg(args, unsigned int);
-	nbr = uns_int;
+	nbr = (unsigned long)va_arg(args, unsigned int);
 	len = ft_numlen(nbr);
 	str = malloc(len + 1);
 	if (str == 0)
@@ -20,9 +18,9 @@ int	ft_unsigned_hex(int written, char c, va_list args)
 		str[0] = '0';
 	str[len] = '\0';
 	ft_numcpy(nbr, len, str, c);
-	written += write(1, str, len);
+	nbr = write(1, str, len);
 	free(str);
-	return (written);
+	return (nbr);
 }
 
 static int	ft_numlen(unsigned long nbr)
